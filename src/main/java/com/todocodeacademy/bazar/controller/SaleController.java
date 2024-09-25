@@ -58,18 +58,18 @@ public class SaleController {
     
     @GetMapping("sale/totalandamountofsales/{localDate}")
     public ResponseEntity<String> totalAndAmountofSalesbyDate(@PathVariable LocalDate localDate){
-        return new ResponseEntity<>("The number of sales on " + localDate + " was " + iSaleServ.numberOfSalesByDate(localDate) + " and the total reveneu was " + iSaleServ.totalSaleByDate(localDate), HttpStatus.OK);
+        return new ResponseEntity<>("The number of sales on " + localDate + " was " + iSaleServ.numberOfSalesByDate(localDate) + " and the total reveneu was " + iSaleServ.totalRevenueByDate(localDate), HttpStatus.OK);
     }
     
-    @GetMapping("/sale/productsnumber/{localDate}")
+    @GetMapping("/sale/numberofsales/{localDate}")
     public ResponseEntity<String> numberOfSalesByDate(@PathVariable LocalDate localDate){
         int quantSales = iSaleServ.numberOfSalesByDate(localDate);
         return new ResponseEntity<>("In this date were did " + quantSales + " sales.", HttpStatus.OK);
     }
     
     @GetMapping("/sale/totalbydate/{localDate}")
-    public ResponseEntity<String> totalSaleByDate(@PathVariable LocalDate localDate){
-        return new ResponseEntity<>("The total of the sales in this date id : " + iSaleServ.totalSaleByDate(localDate), HttpStatus.OK);
+    public ResponseEntity<String> totalRevenueByDate(@PathVariable LocalDate localDate){
+        return new ResponseEntity<>("The total of sales in the date is : " + iSaleServ.totalRevenueByDate(localDate), HttpStatus.OK);
     }
     
     @GetMapping("/sale/getsalestoday")
