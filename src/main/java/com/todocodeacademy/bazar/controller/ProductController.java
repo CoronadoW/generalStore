@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductController {
 
+    public final IProductService iProdServ;
+    
     @Autowired
-    IProductService iProdServ;
+    public ProductController(IProductService iProdServ) {
+        this.iProdServ = iProdServ;
+    }
 
     @PostMapping("/product/create")
     public ResponseEntity<String> createProduct(@RequestBody Product product) {

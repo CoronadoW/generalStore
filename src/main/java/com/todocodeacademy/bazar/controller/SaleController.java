@@ -16,73 +16,82 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/sale")
 public class SaleController {
-    @Autowired
-    ISaleService iSaleServ;
     
-    @PostMapping("/sale/create")
+    private final ISaleService iSaleServ;
+    
+    @Autowired
+    public SaleController(ISaleService iSaleServ) {
+        this.iSaleServ = iSaleServ;
+    }
+    
+    @PostMapping("/create")
     public ResponseEntity<String> createSale( @RequestBody Sale sale){
        Sale createdSale = iSaleServ.createSale(sale);
        return new ResponseEntity("Sale created succesfully", HttpStatus.CREATED);
     }
+
     
-    @GetMapping ("/sale/get/{saleCode}")
+    
+    @GetMapping ("/get/{saleCode}")
     public ResponseEntity<Sale> getSale(@PathVariable Long saleCode){
         return new ResponseEntity<>(iSaleServ.getSale(saleCode), HttpStatus.OK);
     }
     
-    @GetMapping("sale/getall")
+    @GetMapping("/getall")
     public ResponseEntity<List<Sale>> getAllSales(){
         return new ResponseEntity<>(iSaleServ.getAllSales(), HttpStatus.OK);
     }
     
-    @DeleteMapping("/sale/delete/{saleCode}")
+    @DeleteMapping("/delete/{saleCode}")
     public  ResponseEntity<String> deleteSale(@PathVariable Long saleCode){
         iSaleServ.deleteSale(saleCode);
         return new ResponseEntity<>("Sale deleted succesfully", HttpStatus.OK);
     }
     
-    @PutMapping("/sale/edit/{saleCode}")
+    @PutMapping("/edit/{saleCode}")
     public ResponseEntity<String> editSale(@PathVariable Long saleCode ,@RequestBody Sale sale){
         iSaleServ.editSale(saleCode, sale);
         return new ResponseEntity<>("Sale with sale code " + sale.getSaleCode()+" was edited succesfully", HttpStatus.OK);
     }
     
-    @GetMapping ("/sale/getproducts/{saleCode}")
+    @GetMapping ("/getproducts/{saleCode}")
     public ResponseEntity<List<Product>> getProductsBySale(@PathVariable Long saleCode){
         return new ResponseEntity<>(iSaleServ.productsBySale(saleCode), HttpStatus.OK);
     }
     
-    @GetMapping("sale/totalandamountofsales/{localDate}")
+    @GetMapping("/totalandamountofsales/{localDate}")
     public ResponseEntity<String> totalAndAmountofSalesbyDate(@PathVariable LocalDate localDate){
         return new ResponseEntity<>("The number of sales on " + localDate + " was " + iSaleServ.numberOfSalesByDate(localDate) + " and the total reveneu was " + iSaleServ.totalRevenueByDate(localDate), HttpStatus.OK);
     }
     
-    @GetMapping("/sale/numberofsales/{localDate}")
+    @GetMapping("/numberofsales/{localDate}")
     public ResponseEntity<String> numberOfSalesByDate(@PathVariable LocalDate localDate){
         int quantSales = iSaleServ.numberOfSalesByDate(localDate);
         return new ResponseEntity<>("In this date were did " + quantSales + " sales.", HttpStatus.OK);
     }
     
-    @GetMapping("/sale/totalbydate/{localDate}")
+    @GetMapping("/totalbydate/{localDate}")
     public ResponseEntity<String> totalRevenueByDate(@PathVariable LocalDate localDate){
         return new ResponseEntity<>("The total of sales in the date is : " + iSaleServ.totalRevenueByDate(localDate), HttpStatus.OK);
     }
     
-    @GetMapping("/sale/getsalestoday")
+    @GetMapping("/getsalestoday")
     public ResponseEntity<List<Sale>> salesToday(){
         return new ResponseEntity<>(iSaleServ.salesToday(), HttpStatus.OK);
     }
     
-    @GetMapping ("/sale/better")
+    @GetMapping ("/better")
     public ResponseEntity<SaleDto> betterSale(){
         return new ResponseEntity<>(iSaleServ.getBetterSale(), HttpStatus.OK);
     }
     
-    @GetMapping("/sale/totalbysale/{saleCode}")
+    @GetMapping("/totalbysale/{saleCode}")
     public ResponseEntity<String> totalBySale(@PathVariable Long saleCode){
         return new ResponseEntity<>("The revenue for this sale is: " + iSaleServ.totalBySale(saleCode), HttpStatus.OK);
     }
