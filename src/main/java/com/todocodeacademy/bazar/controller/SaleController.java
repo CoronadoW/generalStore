@@ -5,6 +5,7 @@ import com.todocodeacademy.bazar.dto.SaleDto;
 import com.todocodeacademy.bazar.model.Product;
 import com.todocodeacademy.bazar.model.Sale;
 import com.todocodeacademy.bazar.service.ISaleService;
+import jakarta.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,13 +32,11 @@ public class SaleController {
     }
     
     @PostMapping("/create")
-    public ResponseEntity<String> createSale( @RequestBody Sale sale){
+    public ResponseEntity<Sale> createSale(@Valid @RequestBody Sale sale){
        Sale createdSale = iSaleServ.createSale(sale);
-       return new ResponseEntity("Sale created succesfully", HttpStatus.CREATED);
+       return new ResponseEntity<>(createdSale, HttpStatus.CREATED);
     }
 
-    
-    
     @GetMapping ("/get/{saleCode}")
     public ResponseEntity<Sale> getSale(@PathVariable Long saleCode){
         return new ResponseEntity<>(iSaleServ.getSale(saleCode), HttpStatus.OK);
@@ -55,7 +54,7 @@ public class SaleController {
     }
     
     @PutMapping("/edit/{saleCode}")
-    public ResponseEntity<String> editSale(@PathVariable Long saleCode ,@RequestBody Sale sale){
+    public ResponseEntity<String> editSale(@PathVariable Long saleCode ,@Valid @RequestBody Sale sale){
         iSaleServ.editSale(saleCode, sale);
         return new ResponseEntity<>("Sale with sale code " + sale.getSaleCode()+" was edited succesfully", HttpStatus.OK);
     }

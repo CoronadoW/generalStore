@@ -3,6 +3,7 @@ package com.todocodeacademy.bazar.controller;
 
 import com.todocodeacademy.bazar.model.Client;
 import com.todocodeacademy.bazar.service.IClientService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class ClientController {
     }
     
     @PostMapping("/create")
-    public ResponseEntity<String> createClient(@RequestBody Client client){
+    public ResponseEntity<String> createClient(@Valid @RequestBody Client client){
         iClientServ.createClient(client);
         return new ResponseEntity<>("Client created succesfully", HttpStatus.CREATED);
     }
@@ -51,7 +52,7 @@ public class ClientController {
     
     @PutMapping("/edit/{clientId}")
     public ResponseEntity<String> editClient(@PathVariable Long clientId,
-            @RequestBody Client client){        
+            @Valid @RequestBody Client client){        
         return new ResponseEntity<>("The client : " + iClientServ.editClient(clientId, client) + " was edited succesfully", HttpStatus.OK);
     }
     
