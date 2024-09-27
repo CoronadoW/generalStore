@@ -1,3 +1,20 @@
+/*
+
+Se elimina esta clase al haber incompatibilidad de la dependencia de springfox , la cual borre para evitar imcompatibilidades
+Reemplazo dependencia springfox por :
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>6.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+Al hacer esto ya no es necesario la configuracion de esta clase : SwaggerConfig.
+
+
+
+
+Esta configuracion solo es necesaria con la dependencia springfox. 
+Al ser eliminada esta dependencia , esta configuracion ya no es necesaria.
 
 package com.todocodeacademy.bazar.config;
 
@@ -22,3 +39,4 @@ public class SwaggerConfig {
                 .build();
     }
 }
+*/
