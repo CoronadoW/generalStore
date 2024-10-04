@@ -18,14 +18,14 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long clientId;
     
-    @NotNull(message = "The name cannot be null")
-    @Size(min = 2, max = 15, message = "The name must be between 2 and 15 characters")
+    //@NotNull(message = "The name cannot be null")
+    //@Size(min = 2, max = 15, message = "The name must be between 2 and 15 characters")
     private String name;
-    @NotNull(message = "The last name cannot be null")
-    @Size(min = 2, max = 30, message = "The last name must be between 2 and 30 characters")
+    //@NotNull(message = "The last name cannot be null")
+    //@Size(min = 2, max = 30, message = "The last name must be between 2 and 30 characters")
     private String lastName;
-    @NotNull(message = "The Dni cannot be null")
-    @Pattern(regexp = "\\d{8}" , message = "DNI must have 8 digits")
+    //@NotNull(message = "The Dni cannot be null")
+    //@Pattern(regexp = "\\d{8}" , message = "DNI must have 8 digits")
     private String dni;
     
 

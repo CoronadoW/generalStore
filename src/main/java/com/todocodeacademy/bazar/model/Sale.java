@@ -23,19 +23,19 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long saleCode;
     
-    @NotNull(message = "The date cannot be null")
+    //@NotNull(message = "The date cannot be null")
     private LocalDate saleDate;
     
-    @NotNull(message = "The total cannot be null")
+    //@NotNull(message = "The total cannot be null")
     private Double total;
     
     @OneToOne
     @JoinColumn(name = "fk_clientId")
-    @NotNull(message = "The client cannot be null")
+    //@NotNull(message = "The client cannot be null")
     private Client client;
     
-    @NotNull(message = "The list of products cannot be null")
-    @Size(min = 1, message = "The list must contain at least 1 product")
+    //@NotNull(message = "The list of products cannot be null")
+    //@Size(min = 1, message = "The list must contain at least 1 product")
     @ManyToMany 
     @JoinTable(name = "sale_producto",
             joinColumns = @JoinColumn(name = "saleCode"),
