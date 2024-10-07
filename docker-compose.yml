@@ -1,6 +1,6 @@
 services:
   app_bazar:
-    build: .
+    build: . #/bazar was deleted to change the ubication of docker-compose to bazar
     mem_limit: 512m
     ports:
       - "8080:8080"
