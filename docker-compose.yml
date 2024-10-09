@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DB_URL: jdbc:mysql://bazar_mysqo_image:3306/generalstoredb?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_URL: jdbc:mysql://bazar_mysql_image:3306/generalstoredb?createDatabaseIfNotExist=true&serverTimezone=UTC
       DB_USER_NAME: root
       DB_PASSWORD: 1234
     restart: always
