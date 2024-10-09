@@ -5,26 +5,23 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DB_URL: jdbc:postgresql://dpg-cs2khve8ii6s739kfru0-a:5432/dbgeneralstore?createDatabaseIfNotExist=true&serverTimezone=UTC
-      DB_USER_NAME: dbgeneralstore_user
-      DB_PASSWORD: NznGqQhBEc2cNJIQscKbAfAmI4qCL6XR
+      DB_URL: jdbc:mysql://bazar_mysqo_image:3306/generalstoredb?createDatabaseIfNotExist=true&serverTimezone=UTC
+      DB_USER_NAME: root
+      DB_PASSWORD: 1234
     restart: always
-#    depends_on:
-#      bazar_mysql_image:
-#        condition: service_healthy
-  dpg-cs2khve8ii6s739kfru0-a:
-    image: postgres:latest
+    depends_on:
+      bazar_mysql_image:
+        condition: service_healthy
+  bazar_mysql_image:
+    image: mysql:latest
     ports:
-      - "5432:5432"
+      - "3307:3306"
     environment:
-      POSTGRES_DB: dbgeneralstore
-      POSTGRES_USER: dbgeneralstore_user
-      POSTGRES_PASSWORD: NznGqQhBEc2cNJIQscKbAfAmI4qCL6XR
- #     MYSQL_ROOT_PASSWORD: 1234
- #     MYSQL_PASSWORD: 1234
- #     MYSQL_DATABASE: generalstoredb
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_PASSWORD: 1234
+      MYSQL_DATABASE: generalstoredb
     restart: always
-#    healthcheck:
-#      test: [ "CMD", "mysqladmin", "ping", "-h", "bazar_mysql_image" ]
-#      timeout: 10s
-#      retries: 10
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "bazar_mysql_image" ]
+      timeout: 10s
+      retries: 10
