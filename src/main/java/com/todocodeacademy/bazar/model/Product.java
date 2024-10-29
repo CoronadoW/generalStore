@@ -3,7 +3,6 @@ package com.todocodeacademy.bazar.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,11 +16,11 @@ public class Product {
     private Long productCode;
     
     @NotNull(message = "The name cannot be null")
-    @Size(min = 2, max = 20, message = "The name must be between 2 and 20 characters")
+    @Size(min = 2, max = 30, message = "The name must be between 2 and 20 characters")
     private String name;
     
     @NotNull(message = "The brand cannot be null")
-    @Size(min = 2, max = 20, message = "The brand must be between 2 and 20 characters")
+    @Size(min = 2, max = 30, message = "The brand must be between 2 and 20 characters")
     private String brand;
     
     @NotNull(message = "The cost cannot be null")    

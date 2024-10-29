@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter @Setter
 public class ProductsDto {
     
-    private Long prodCodeDto;
+    private Long prodCodeDto;    
     private int requiredQtyDto;
 
     public ProductsDto() {
@@ -17,5 +17,6 @@ public class ProductsDto {
         this.prodCodeDto = prodCodeDto;
         this.requiredQtyDto = requiredQtyDto;
     }
+  
 }
 

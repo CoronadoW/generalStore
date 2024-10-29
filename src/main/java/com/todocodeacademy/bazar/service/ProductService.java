@@ -1,4 +1,3 @@
-
 package com.todocodeacademy.bazar.service;
 
 import com.todocodeacademy.bazar.exception.ProductAlreadyExistsException;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class ProductService implements IProductService {
 
     private final IProductRepository iProdRepo;
-    
+
     @Autowired
     public ProductService(IProductRepository iProdRepo) {
         this.iProdRepo = iProdRepo;
@@ -40,13 +39,6 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public List<Product> stockAtMinimun() {
-        return iProdRepo.findAll().stream()
-                .filter(prod -> prod.getQuantityAvailable() < 5)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public void deleteProduct(Long productCode) {
         if (!iProdRepo.existsById(productCode)) {
             throw new ProductNotFoundException("Product not found with this product code");
@@ -63,5 +55,12 @@ public class ProductService implements IProductService {
         prod.setCost(product.getCost());
         prod.setQuantityAvailable(product.getQuantityAvailable());
         return iProdRepo.save(prod);
+    }
+    
+    @Override
+    public List<Product> stockAtMinimun() {
+        return iProdRepo.findAll().stream()
+                .filter(prod -> prod.getQuantityAvailable() < 5)
+                .collect(Collectors.toList());
     }
 }

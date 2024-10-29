@@ -20,7 +20,7 @@ public class ClientService implements IClientService{
 
     @Override
     public Client createClient(Client client) {
-        if(iClientRepo.existsById(client.getClientId())){
+        if(iClientRepo.existsByDni(client.getDni())){
             throw new ClientAlreadyExistsException("Client already exists");
         }
         return iClientRepo.save(client);

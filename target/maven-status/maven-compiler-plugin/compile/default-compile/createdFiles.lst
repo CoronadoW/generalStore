@@ -1,5 +1,7 @@
 com\todocodeacademy\bazar\controller\SaleController.class
+com\todocodeacademy\bazar\repository\ISoldProductRepository.class
 com\todocodeacademy\bazar\exception\ProductNotFoundException.class
+com\todocodeacademy\bazar\exception\SoldProductNotFoundException.class
 com\todocodeacademy\bazar\repository\ISaleRepository.class
 com\todocodeacademy\bazar\exception\ProductAlreadyExistsException.class
 com\todocodeacademy\bazar\exception\ClientNotFoundException.class
@@ -9,6 +11,7 @@ com\todocodeacademy\bazar\service\IProductService.class
 com\todocodeacademy\bazar\model\Sale.class
 com\todocodeacademy\bazar\service\ISaleService.class
 com\todocodeacademy\bazar\BazarApplication.class
+com\todocodeacademy\bazar\controller\SoldProductController.class
 com\todocodeacademy\bazar\dto\RequestSaleDto.class
 com\todocodeacademy\bazar\service\IClientService.class
 com\todocodeacademy\bazar\exception\SaleNotFoundException.class
@@ -17,10 +20,12 @@ com\todocodeacademy\bazar\model\Client.class
 com\todocodeacademy\bazar\exception\ProductStockNotEnoughException.class
 com\todocodeacademy\bazar\service\ProductService.class
 com\todocodeacademy\bazar\repository\IProductRepository.class
+com\todocodeacademy\bazar\model\SoldProduct.class
+com\todocodeacademy\bazar\service\SoldProductService.class
 com\todocodeacademy\bazar\controller\ProductController.class
 com\todocodeacademy\bazar\dto\ProductsDto.class
-com\todocodeacademy\bazar\dto\SaleDto.class
 com\todocodeacademy\bazar\service\ClientService.class
+com\todocodeacademy\bazar\service\ISoldProductService.class
 com\todocodeacademy\bazar\repository\IClientRepository.class
 com\todocodeacademy\bazar\exception\GlobalExceptionHandler.class
 com\todocodeacademy\bazar\exception\SaleAlreadyExistsException.class

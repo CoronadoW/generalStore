@@ -44,4 +44,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>( notEnoughExcep.getMessage(), HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(SoldProductNotFoundException.class)
+    public ResponseEntity<String> soldProductNotFoundExceptionHandler(SoldProductNotFoundException notFoundSoldProd){
+        return new ResponseEntity<>(notFoundSoldProd.getMessage(), HttpStatus.NOT_FOUND);
+    }
+            
 }

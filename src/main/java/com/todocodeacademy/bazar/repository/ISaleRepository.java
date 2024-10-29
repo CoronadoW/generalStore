@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ISaleRepository extends JpaRepository<Sale, Long>{
-    
+    boolean existsBySaleCode(Long saleCode);
 }

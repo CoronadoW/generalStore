@@ -1,6 +1,8 @@
 
 package com.todocodeacademy.bazar.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
@@ -27,32 +29,42 @@ public class Sale {
     private LocalDate saleDate;
     
     @NotNull(message = "The total cannot be null")
-    private Double total;
+    private Double totalBySale;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "fk_clientId")
     @NotNull(message = "The client cannot be null")
     private Client client;
     
-    @NotNull(message = "The list of products cannot be null")
+    
+    @NotNull(message = "The list of products must not be null")
     @Size(min = 1, message = "The list must contain at least 1 product")
+    @JsonManagedReference
     @ManyToMany 
-    @JoinTable(name = "sale_producto",
+    @JoinTable(name = "sale_soldProducto",
             joinColumns = @JoinColumn(name = "saleCode"),
-            inverseJoinColumns = @JoinColumn(name = "productCode"))            
-    private List<Product> productList;
+            inverseJoinColumns = @JoinColumn(name = "productCode"))     
+    private List<SoldProduct> soldProductList;
 
     public Sale() {
     }
 
-    public Sale(Long saleCode, LocalDate saleDate, Double total, Client client, List<Product> productList) {
+    public Sale(Long saleCode, LocalDate saleDate, Double totalBySale, Client client, List<SoldProduct> soldProductList) {
         this.saleCode = saleCode;
         this.saleDate = saleDate;
-        this.total = total;
+        this.totalBySale = totalBySale;
         this.client = client;
-        this.productList = productList;
+        this.soldProductList = soldProductList;
     }
 
+    @Override
+    public String toString() {
+        return "Sale{" + "saleCode=" + saleCode + ", saleDate=" + saleDate + ", totalBySale=" + totalBySale + ", client=" + client + ", soldProductList=" + soldProductList + '}';
+    }
+
+    
+
+   
     
     
     
